@@ -47,8 +47,10 @@ namespace E_Agenda.ConsoleApp1.ModuloItem
 
         public void Concluir()
         {
-            repositorioItem.Concluir(PegaId());
+           if(repositorioItem.Concluir(PegaId()))
             Notificador.ApresentarMensagem("item concluido com sucesso", TipoMensagem.Sucesso);
+           else
+                Notificador.ApresentarMensagem("nao encontrado", TipoMensagem.Erro);
         }
         public Item ObterItem()
         {

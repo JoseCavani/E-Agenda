@@ -2,6 +2,7 @@
 using E_Agenda.ConsoleApp1.Compartilhado;
 using E_Agenda.ConsoleApp1.ModuloItem;
 using E_Agenda.ConsoleApp1.ModuloTarefa;
+using E_Agenda.ConsoleApp1.ModuloContato;
 
 namespace E_Agenda.ConsoleApp1
 {
@@ -20,7 +21,7 @@ namespace E_Agenda.ConsoleApp1
 
 
 
-               
+
                 if (telaSelecionada is TelaCadastroTarefa)
                 {
                     TelaCadastroTarefa telaCadastro = (TelaCadastroTarefa)telaSelecionada;
@@ -47,12 +48,35 @@ namespace E_Agenda.ConsoleApp1
                             break;
                     }
                 }
+                if (telaSelecionada is ITelaCadastravel)
+                {
+                    ITelaCadastravel telaCadastro = (ITelaCadastravel)telaSelecionada;
+                    string opcaoSelecionada = telaCadastro.MostrarOpcoes();
+                    switch (opcaoSelecionada)
+                    {
+                        case "1":
+                            telaCadastro.Inserir();
+                            break;
+                        case "2":
+                            telaCadastro.Editar();
+                            Console.ReadKey();
+                            break;
+                        case "3":
+                            telaCadastro.Excluir();
+                            Console.ReadKey();
+                            break;
+                        case "4":
+                            telaCadastro.Vizualizar();
+                            Console.ReadKey();
+                            break;
+                    }
 
+                }
             }
+
+
         }
 
-      
     }
-
 }
 

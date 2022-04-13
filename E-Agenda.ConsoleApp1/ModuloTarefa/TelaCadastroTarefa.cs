@@ -112,7 +112,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             if (!TemRegistro())
                 return;
             
-                if (repositorioTarefa.ExcluirItem(PegaId()))
+                if (repositorioTarefa.Excluir(PegaId()))
             {
                 Notificador.ApresentarMensagem("excluido com sucesso", TipoMensagem.Sucesso);
                 return;

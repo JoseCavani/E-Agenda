@@ -9,10 +9,17 @@ namespace E_Agenda.ConsoleApp1.ModuloItem
 {
     public class RepositorioItem : RepositorioBase<Item>
     {
-        public void Concluir(int id)
+        public bool Concluir(int id)
         {
-            int index = Registros.FindIndex(x => x.id == id);
-            Registros[index].concluido = true;
+            
+           if (Registros.Find(x => x.id == id) == default)
+                return false;
+            else
+            {
+                Registros.Find(x => x.id == id).concluido = true;
+                return true;
+            }
+           
         }
     }
 }

@@ -2,6 +2,8 @@
 using System;
 using E_Agenda.ConsoleApp1.ModuloItem;
 using E_Agenda.ConsoleApp1.ModuloTarefa;
+using E_Agenda.ConsoleApp1.ModuloContato;
+using E_Agenda.ConsoleApp1.ModuloCompromisso;
 
 namespace E_Agenda.ConsoleApp1
 {
@@ -15,13 +17,14 @@ namespace E_Agenda.ConsoleApp1
         private TelaCadastroTarefa telaCadastroTarefa;
 
         //// Declaração de contatos
-        //private IRepositorio<Revista> repositorioRevista;
+        private RepositorioContato repositorioContato;
 
-        //private TelaCadastroRevista telaCadastroRevista;
+        private TelaCadastroContato telaCadastroContato;
 
         //// Declaração de compromisso
-        //private IRepositorio<Amigo> repositorioAmigo;
-        //private TelaCadastroAmigo telaCadastroAmigo;
+        private RepositorioCompromisso repositorioCompromisso;
+
+        private TelaCadastroCompromisso telaCadastroCompromisso;
         public TelaMenuPrincipal()
         {
           
@@ -29,7 +32,16 @@ namespace E_Agenda.ConsoleApp1
             repositorioTarefa = new RepositorioTarefa();
             telaCadastroTarefa = new TelaCadastroTarefa(repositorioTarefa);
 
+            repositorioContato = new RepositorioContato();
+            telaCadastroContato = new TelaCadastroContato(repositorioContato);
+            repositorioContato.Inserir(new Contato("a", "b", "c", "d", "e"));
 
+            repositorioCompromisso = new RepositorioCompromisso();
+            telaCadastroCompromisso = new TelaCadastroCompromisso(repositorioCompromisso, telaCadastroContato);
+            repositorioCompromisso.Inserir(new Compromisso("a","a",DateTime.Parse("13/04/2022 23:26"),DateTime.Parse("13/04/2022 23:22"), new Contato("a", "b", "c", "d", "e")));
+            repositorioCompromisso.Inserir(new Compromisso("a", "a", DateTime.Parse("13/04/2021 5:26"), DateTime.Parse("13/04/2021 5:22"), new Contato("a", "b", "c", "d", "e")));
+            repositorioCompromisso.Inserir(new Compromisso("a", "a", DateTime.Parse("15/04/2022 5:26"), DateTime.Parse("15/04/2022 5:22"), new Contato("a", "b", "c", "d", "e")));
+           
             //telaCadastroReserva = new TelaCadastroReserva(
             //    notificador,
             //    repositorioReserva,
@@ -50,6 +62,8 @@ namespace E_Agenda.ConsoleApp1
             Console.WriteLine();
 
             Console.WriteLine("Digite 1 para Tarefa");
+            Console.WriteLine("Digite 2 para Contato");
+            Console.WriteLine("Digite 3 para Compromisso");
 
             Console.WriteLine("Digite s para sair");
 
@@ -63,6 +77,10 @@ namespace E_Agenda.ConsoleApp1
             string opcao = MostrarOpcoes();
             if (opcao == "1")
                 return telaCadastroTarefa;
+           else if (opcao == "2")
+                return telaCadastroContato;
+            else if (opcao == "3")
+                return telaCadastroCompromisso;
             return null;
         }
 

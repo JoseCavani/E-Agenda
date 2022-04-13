@@ -22,7 +22,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             return true;
         }
 
-        public bool ExcluirItem(int id)
+        public override bool Excluir(int id)
         {
             int index = Registros.FindIndex(x => x.id == id);
 

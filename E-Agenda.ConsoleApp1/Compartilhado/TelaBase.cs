@@ -121,9 +121,10 @@ namespace E_Agenda.ConsoleApp1.Compartilhado
             return true;
         }
 
-        protected virtual void MostrarTitulo()
+        public virtual T PegarRegistro()
         {
-
+            Vizualizar();
+           return repositorio.GetRegistro(PegaId());
         }
 
     }

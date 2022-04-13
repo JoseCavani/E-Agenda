@@ -19,13 +19,8 @@ namespace E_Agenda.ConsoleApp1.Compartilhado
         }
         public virtual bool Excluir(int numeroId)
         {
-            int index = registros.FindIndex(x => x.id == numeroId);
-
-            if (index == -1)
-                return false;
-
-            registros.RemoveAt(index);
-            return true;
+            return registros.Remove(registros.Find(x => x.id == numeroId));
+            
         }
         public virtual bool Editar(int numeroId,T entidadeNova)
         {
@@ -47,6 +42,10 @@ namespace E_Agenda.ConsoleApp1.Compartilhado
         {
             return Registros;
         }
-           
+        public virtual T GetRegistro(int id)
+        {
+            return Registros.Find(x => x.id == id);
+        }
+
     }
 }

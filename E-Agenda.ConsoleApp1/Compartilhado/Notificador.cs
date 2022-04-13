@@ -27,7 +27,7 @@ namespace E_Agenda.ConsoleApp1
                 Console.WriteLine();
                 Console.WriteLine(mensagem);
                 Console.ResetColor();
-                Console.ReadLine();
+                Console.ReadKey();
             }
 
         }
