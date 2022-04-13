@@ -120,7 +120,8 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         public void Items() {
             if (!TemRegistro())
                 return;
-           int numeroId = PegaId();
+            repositorioTarefa.Ordenar();
+            int numeroId = PegaId();
 
             telaCadastroItem = repositorioTarefa.PegaTela(numeroId);
 
@@ -133,13 +134,11 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
                     break;
                 case "2":
                     telaCadastroItem.Editar();
-                    numeroId = PegaId();
                     repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     Console.ReadKey();
                     break;
                 case "3":
                     telaCadastroItem.Excluir();
-                    numeroId = PegaId();
                     repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     Console.ReadKey();
                     break;
