@@ -20,15 +20,6 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             this.repositorioTarefa = repositorioTarefa;
         }
 
-        private void VizualizarTodas()
-        {
-            MostrarTitulo($"Vizualizando todas as Tarefas");
-
-            foreach (Tarefa entidade in repositorioTarefa.GetRegistros())
-            {
-                Console.WriteLine(entidade.ToString() + Environment.NewLine);
-            }
-        }
         public override string MostrarOpcoes()
         {
             MostrarTitulo(Titulo);
@@ -75,7 +66,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
                     }
                     break;
                 case "3":
-                    VizualizarTodas();
+                    base.Vizualizar();
                     break;
             }
     }
@@ -85,7 +76,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             do
             {
 
-                VizualizarTodas();
+                base.Vizualizar();
                 Console.WriteLine("qual o id do registro");
 
             } while (!(int.TryParse(Console.ReadLine(), out numeroId)));
@@ -99,8 +90,8 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         }
         public void Editar()
         {
-            Tarefa item = ObterTarefa(true);
             int id = PegaId();
+            Tarefa item = ObterTarefa(true);
             base.Editar(item,id);
         }
     
@@ -108,8 +99,8 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         {
             if (!TemRegistro())
                 return;
-            
-                if (repositorioTarefa.Excluir(PegaId()))
+            int id = PegaId();
+            if (repositorioTarefa.Excluir(id))
             {
                 Notificador.ApresentarMensagem("excluido com sucesso", TipoMensagem.Sucesso);
                 return;
