@@ -11,14 +11,13 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
 {
     public class RepositorioTarefa : RepositorioBase<Tarefa>
     {
-        internal bool AtualizarItems(int numeroId, List<Item> items)
+        internal bool Atualizar(int numeroId, List<Item> items)
         {
-            int index = Registros.FindIndex(x => x.id == numeroId);
 
-            if (index == -1)
+            Tarefa tarefa = Registros.Find(x => x.id == numeroId);
+            if (tarefa == default)
                 return false;
-            Registros[index].Items = items;
-            AtualizarPercentual(index);
+            AtualizarPercentual(tarefa, items);
             return true;
         }
 
@@ -45,15 +44,15 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             return true;
         }
 
-        public void AtualizarPercentual(int index)
+        private void AtualizarPercentual(Tarefa tarefa, List<Item> items)
         {
             int contador = 0;
-            foreach (var item in Registros[index].Items)
+            foreach (var item in items)
             {
                 if (item.concluido)
                 contador++;
             }
-           Registros[index].PercentualConclusão = (double)contador / (double)Registros[index].Items.Count;
+           tarefa.PercentualConclusão = (double)contador / items.Count;
         }
 
         internal void Ordenar()

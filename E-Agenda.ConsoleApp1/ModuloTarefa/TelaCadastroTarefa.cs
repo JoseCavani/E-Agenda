@@ -129,18 +129,18 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             {
                 case "1":
                     telaCadastroItem.Inserir();
-                    repositorioTarefa.AtualizarItems(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
+                    repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     break;
                 case "2":
                     telaCadastroItem.Editar();
                     numeroId = PegaId();
-                    repositorioTarefa.AtualizarItems(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
+                    repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     Console.ReadKey();
                     break;
                 case "3":
                     telaCadastroItem.Excluir();
                     numeroId = PegaId();
-                    repositorioTarefa.AtualizarItems(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
+                    repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     Console.ReadKey();
                     break;
                 case "4":
@@ -149,7 +149,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
                     break;
                 case "5":
                     telaCadastroItem.Concluir();
-                    repositorioTarefa.AtualizarItems(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
+                    repositorioTarefa.Atualizar(numeroId, telaCadastroItem.repositorioItem.GetRegistros());
                     Console.ReadKey();
                     break;
             }

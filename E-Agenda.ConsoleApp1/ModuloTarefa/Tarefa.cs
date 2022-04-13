@@ -16,7 +16,6 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         DateTime dataCriacao;
         DateTime dataConclusao;
         double percentualConclusão;
-        List<Item> items = new List<Item>();
 
         public TelaCadastroItem telaCadastroItem;
         public RepositorioItem repositorioItem;
@@ -32,7 +31,6 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             telaCadastroItem = new TelaCadastroItem(repositorioItem);
         }
 
-        public List<Item> Items { get => items; set => items = value; }
         public double PercentualConclusão { get => percentualConclusão; set => percentualConclusão = value; }
         public DateTime DataConclusao { get => dataConclusao; set => dataConclusao = value; }
 
