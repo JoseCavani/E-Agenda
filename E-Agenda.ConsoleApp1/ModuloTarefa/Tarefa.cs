@@ -11,12 +11,15 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
 {
     public class Tarefa : EntidadeBase, IComparable<Tarefa>
     {
-        Prioridade prioridade;
+       public Prioridade prioridade;
         string titulo;
         DateTime dataCriacao;
         DateTime dataConclusao;
         double percentualConclusão;
         List<Item> items = new List<Item>();
+
+        public TelaCadastroItem telaCadastroItem;
+        public RepositorioItem repositorioItem;
 
         public Tarefa(Prioridade prioridade, string titulo, DateTime dataCriacao, DateTime dataConclusao)
         {
@@ -24,16 +27,14 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             this.titulo = titulo;
             this.dataCriacao = dataCriacao;
             this.dataConclusao = dataConclusao;
+
+            repositorioItem = new RepositorioItem();
+            telaCadastroItem = new TelaCadastroItem(repositorioItem);
         }
 
         public List<Item> Items { get => items; set => items = value; }
         public double PercentualConclusão { get => percentualConclusão; set => percentualConclusão = value; }
         public DateTime DataConclusao { get => dataConclusao; set => dataConclusao = value; }
-
-        public int CompareTo(Tarefa other)
-        {
-            return prioridade.CompareTo(other.prioridade);
-        }
 
         public override string ToString()
         {
@@ -43,6 +44,11 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
                 $"Data de criação {dataCriacao}\n" +
                 $"data de conclusão {DataConclusao}\n" +
                 $"Percentual de conclusão {percentualConclusão *100}%";
+        }
+
+        public int CompareTo(Tarefa other)
+        {
+         return other.prioridade.CompareTo(prioridade);
         }
     }
 }

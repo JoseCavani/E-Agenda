@@ -13,15 +13,11 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
     public class TelaCadastroTarefa : TelaBase<RepositorioTarefa, Tarefa>
     {
         TelaCadastroItem telaCadastroItem;
-        RepositorioItem repositorioItem;
-
         private readonly RepositorioTarefa repositorioTarefa;
         public TelaCadastroTarefa(RepositorioTarefa repositorioTarefa)
            : base("Cadastro de items", repositorioTarefa)
         {
             this.repositorioTarefa = repositorioTarefa;
-            repositorioItem = new RepositorioItem();
-            telaCadastroItem = new TelaCadastroItem(repositorioItem);
         }
 
         private void VizualizarTodas()
@@ -53,7 +49,7 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         {
             if (!TemRegistro())
                 return;
-            repositorioTarefa.Ordenar();
+           repositorioTarefa.Ordenar();
             Console.WriteLine("1 = pendentes\n" +
                 "2 = completas\n" +
                 "3 = todas");
@@ -104,7 +100,8 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         public void Editar()
         {
             Tarefa item = ObterTarefa(true);
-            base.Editar(item);
+            int id = PegaId();
+            base.Editar(item,id);
         }
     
         public override void Excluir()
@@ -124,6 +121,8 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
             if (!TemRegistro())
                 return;
            int numeroId = PegaId();
+
+            telaCadastroItem = repositorioTarefa.PegaTela(numeroId);
 
             string opcaoSelecionada = telaCadastroItem.MostrarOpcoes();
             switch (opcaoSelecionada)

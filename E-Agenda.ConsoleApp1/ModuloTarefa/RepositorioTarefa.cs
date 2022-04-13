@@ -60,5 +60,10 @@ namespace E_Agenda.ConsoleApp1.ModuloTarefa
         {
             Registros.Sort();
         }
+
+        public TelaCadastroItem PegaTela(int id)
+        {
+           return Registros.Find(x => x.id == id).telaCadastroItem;
+        }
     }
 }

@@ -27,7 +27,8 @@ namespace E_Agenda.ConsoleApp1.ModuloCompromisso
         public void Editar()
         {
             Compromisso c = ObterCompromisso();
-            base.Editar(c);
+          int id =  PegaId();
+            base.Editar(c,id);
         }
 
         private Compromisso ObterCompromisso()
@@ -38,8 +39,8 @@ namespace E_Agenda.ConsoleApp1.ModuloCompromisso
             Console.WriteLine("Local");
             string local = Console.ReadLine();
 
-  Console.Clear();
-            Console.WriteLine("Lista de contatos para selecionar");
+           Console.Clear();
+           Console.WriteLine("Lista de contatos para selecionar");
            Contato c = telaCadastroContato.PegarRegistro();
 
             Console.WriteLine("data");

@@ -59,14 +59,14 @@ namespace E_Agenda.ConsoleApp1.Compartilhado
                 Notificador.ApresentarMensagem("id nao encontrado", TipoMensagem.Erro);
             } while (true);
         }
-        protected virtual void Editar(T EntidadeNova)
+        protected virtual void Editar(T EntidadeNova,int id)
         {
             if (!TemRegistro())
                 return;
             do
             {
 
-                bool deuCerto = repositorio.Editar(PegaId(), EntidadeNova);
+                bool deuCerto = repositorio.Editar(id, EntidadeNova);
 
                 if (deuCerto)
                 {

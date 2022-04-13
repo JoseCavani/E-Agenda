@@ -19,9 +19,6 @@ namespace E_Agenda.ConsoleApp1
                 if (telaSelecionada is null)
                     return;
 
-
-
-
                 if (telaSelecionada is TelaCadastroTarefa)
                 {
                     TelaCadastroTarefa telaCadastro = (TelaCadastroTarefa)telaSelecionada;

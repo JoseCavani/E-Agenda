@@ -31,13 +31,21 @@ namespace E_Agenda.ConsoleApp1
 
             repositorioTarefa = new RepositorioTarefa();
             telaCadastroTarefa = new TelaCadastroTarefa(repositorioTarefa);
+            repositorioTarefa.Inserir(new Tarefa(Prioridade.Baixa, "a", DateTime.Now, DateTime.Now));
+            repositorioTarefa.Inserir(new Tarefa(Prioridade.Alta, "a", DateTime.Now, DateTime.Now));
+
+
 
             repositorioContato = new RepositorioContato();
             telaCadastroContato = new TelaCadastroContato(repositorioContato);
+
+
             repositorioContato.Inserir(new Contato("a", "b", "c", "d", "e"));
 
             repositorioCompromisso = new RepositorioCompromisso();
             telaCadastroCompromisso = new TelaCadastroCompromisso(repositorioCompromisso, telaCadastroContato);
+
+
             repositorioCompromisso.Inserir(new Compromisso("a","a",DateTime.Parse("13/04/2022 23:26"),DateTime.Parse("13/04/2022 23:22"), new Contato("a", "b", "c", "d", "e")));
             repositorioCompromisso.Inserir(new Compromisso("a", "a", DateTime.Parse("13/04/2021 5:26"), DateTime.Parse("13/04/2021 5:22"), new Contato("a", "b", "c", "d", "e")));
             repositorioCompromisso.Inserir(new Compromisso("a", "a", DateTime.Parse("15/04/2022 5:26"), DateTime.Parse("15/04/2022 5:22"), new Contato("a", "b", "c", "d", "e")));

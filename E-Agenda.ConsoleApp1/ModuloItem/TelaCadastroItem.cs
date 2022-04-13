@@ -42,7 +42,8 @@ namespace E_Agenda.ConsoleApp1.ModuloItem
         public void Editar()
         {
             Item item = ObterItem();
-            base.Editar(item);
+            int id = PegaId();
+            base.Editar(item,id);
         }
 
         public void Concluir()

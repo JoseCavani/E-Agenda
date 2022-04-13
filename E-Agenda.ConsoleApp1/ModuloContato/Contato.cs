@@ -7,7 +7,7 @@ using E_Agenda.ConsoleApp1.Compartilhado;
 
 namespace E_Agenda.ConsoleApp1.ModuloContato
 {
-    public class Contato : EntidadeBase
+    public class Contato : EntidadeBase, IComparable<Contato>
     {
         string nome;
         string email;
@@ -29,6 +29,11 @@ namespace E_Agenda.ConsoleApp1.ModuloContato
         }
 
         public string Nome { get => nome; }
+
+        public int CompareTo(Contato other)
+        {
+          return  cargo.CompareTo(other.cargo);
+        }
 
         public override string ToString()
         {

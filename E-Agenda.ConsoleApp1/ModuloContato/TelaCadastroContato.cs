@@ -22,14 +22,27 @@ namespace E_Agenda.ConsoleApp1.ModuloContato
 
         public void Inserir()
         {
-            Contato contato = ObterItem();
+            Contato contato = ObterContato();
             base.Inserir(contato);
         }
         public void Editar()
         {
-            Contato contato = ObterItem();
-            base.Editar(contato);
+            Contato contato = ObterContato();
+          int id =  PegaId();
+            base.Editar(contato,id);
         }
+        public override void Vizualizar()
+        {
+            MostrarTitulo($"Vizualizando contatos agrupados");
+            if (!TemRegistro())
+                return;
+            repositorioContato.AgrupadosPorCargo();
+            foreach (object entidade in repositorioContato.GetRegistros())
+            {
+                Console.WriteLine(entidade.ToString() + Environment.NewLine);
+            }
+        }
+    
         private bool IsValidEmail(string emailaddress)
         {
             return new EmailAddressAttribute().IsValid(emailaddress);
@@ -40,7 +53,7 @@ namespace E_Agenda.ConsoleApp1.ModuloContato
             return Regex.Match(telNo, @"^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$").Success;
         }
 
-        public Contato ObterItem()
+        public Contato ObterContato()
         {
             string email;
             string telefone;
