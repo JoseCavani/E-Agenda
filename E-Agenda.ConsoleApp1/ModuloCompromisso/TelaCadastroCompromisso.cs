@@ -89,7 +89,8 @@ namespace E_Agenda.ConsoleApp1.ModuloCompromisso
             Console.WriteLine("vizualizar quais compromissos\n" +
                 "1 = passados\n" +
                 "2 = semanal\n" +
-                "3 = diaria\n");
+                "3 = diaria\n" +
+                "4 = data especifica");
 
             switch (Console.ReadLine())
             {
@@ -107,7 +108,7 @@ namespace E_Agenda.ConsoleApp1.ModuloCompromisso
                     foreach (Compromisso c in repositorioCompromisso.GetRegistros())
                     {
                         TimeSpan t = c.DataInicio - DateTime.Now;
-                        if (t.Days >= 1 && t.Days <= 7)
+                        if (t.Days >= 1 && t.Days <= 7 && t.Seconds > 0)
                             Console.WriteLine(c.ToString() + Environment.NewLine);
                     }
                     break;
@@ -116,7 +117,27 @@ namespace E_Agenda.ConsoleApp1.ModuloCompromisso
                     foreach (Compromisso c in repositorioCompromisso.GetRegistros())
                     {
                         TimeSpan t = c.DataInicio - DateTime.Now;
-                        if (t.Days >= 0 && t.Days < 1)
+                        if (t.Days >= 0 && t.Days < 1  && t.Seconds > 0)
+                            Console.WriteLine(c.ToString() + Environment.NewLine);
+                    }
+                    break;
+                case "4":
+                    DateTime dataInicio;
+                   DateTime dataFim;
+                    do
+                    {
+                        Console.WriteLine("data inicio");
+                    } while (!(DateTime.TryParse(Console.ReadLine(), out dataInicio)));
+                    do
+                    {
+                        Console.WriteLine("data fim");
+                    } while (!(DateTime.TryParse(Console.ReadLine(), out dataFim)));
+                    Console.Clear();
+                    MostrarTitulo($"Vizualizando Compromissos diario");
+                    foreach (Compromisso c in repositorioCompromisso.GetRegistros())
+                    {
+
+                        if (c.DataInicio >= dataInicio && c.DataFim <= dataFim)
                             Console.WriteLine(c.ToString() + Environment.NewLine);
                     }
                     break;
